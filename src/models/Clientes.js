@@ -32,7 +32,8 @@ class Clientes extends Model {
     this.belongsTo(models.Cidades, { foreignKey: 'id_cidade', as: 'cidade' }),
     this.belongsTo(models.RamoAtividade, { foreignKey: 'id_atividade', as: 'atividade' }),
     this.belongsTo(models.Modulos, { foreignKey: 'id_modulo', as: 'modulo' }),
-    this.belongsTo(models.Suporte, { foreignKey: 'id_suporte', as: 'suporte' })
+    this.belongsTo(models.Suporte, { foreignKey: 'id_suporte', as: 'suporte' }),
+    this.hasMany(models.Atendimentos, { foreignKey: 'id_cliente', as: 'atendimento' })
   }
 }
 

@@ -17,6 +17,9 @@ const StateRoutes = require('./routes/StateRoutes')
 const CityRoutes = require('./routes/CityRoutes')
 const ToolRoutes = require('./routes/ToolRoutes')
 const SupportRoutes = require('./routes/SupportRoutes')
+const ReasonRoutes = require('./routes/ReasonRoutes')
+const ClientsRoutes = require('./routes/ClientsRoutes')
+const AttendenceRoutes = require('./routes/AttendenceRoutes')
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -39,6 +42,9 @@ app.use('/states', StateRoutes)
 app.use('/cities', CityRoutes)
 app.use('/tools', ToolRoutes)
 app.use('/support', SupportRoutes)
+app.use('/reasons', ReasonRoutes)
+app.use('/clients', ClientsRoutes)
+app.use('/attendence', AttendenceRoutes)
 
 app.use((req, res, next) => {
     const error = new Error("Rota não encontrada");
