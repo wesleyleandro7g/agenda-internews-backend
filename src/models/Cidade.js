@@ -8,13 +8,13 @@ class Cidades extends Model {
       },
       {
         sequelize,
-        tableName: 'cidade'
+        tableName: 'cidades'
       }
     );
   }
 
   static associate(models) {
-    this.belongsToMany(models.Cliente, { foreignKey: 'id_cidade', as: 'cliente' })
+    this.hasMany(models.Clientes, { foreignKey: 'id_cidade', as: 'cliente' })
   }
 }
 

@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("clientes", {
-      id_cliente: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -47,31 +47,31 @@ module.exports = {
       },
       id_atividade: {
         type: Sequelize.INTEGER,
-        references: { model: 'ramo_atividade', key: 'id_atividade' },
+        references: { model: 'ramo_atividade', key: 'id' },
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT'
       },
       id_estado: {
         type: Sequelize.INTEGER,
-        references: { model: 'estados', key: 'id_estado' },
+        references: { model: 'estados', key: 'id' },
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT'
       },
       id_cidade: {
         type: Sequelize.INTEGER,
-        references: { model: 'cidades', key: 'id_cidade' },
+        references: { model: 'cidades', key: 'id' },
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT'
       },
       id_modulo: {
         type: Sequelize.INTEGER,
-        references: { model: 'modulos', key: 'id_modulo' },
+        references: { model: 'modulos', key: 'id' },
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT'
       },
       id_suporte: {
         type: Sequelize.INTEGER,
-        references: { model: 'suportes', key: 'id_suporte' },
+        references: { model: 'suportes', key: 'id' },
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT'
       },

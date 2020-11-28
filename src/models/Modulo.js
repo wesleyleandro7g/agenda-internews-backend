@@ -14,7 +14,7 @@ class Modulos extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.Cliente, { foreignKey: 'id_modulo', as: 'cliente' })
+    this.hasMany(models.Clientes, { foreignKey: 'id_modulo', as: 'clientes' })
   }
 }
 

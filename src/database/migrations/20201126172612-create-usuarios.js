@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("usuarios", {
-      id_usuario: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -15,7 +15,7 @@ module.exports = {
       },
       id_setor: {
         type: Sequelize.INTEGER,
-        references: { model: 'setores', key: 'id_setor' },
+        references: { model: 'setores', key: 'id' },
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT',
         allowNull: false,

@@ -14,7 +14,7 @@ class RamoAtividade extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.Cliente, { foreignKey: 'id_atividade', as: 'cliente' })
+    this.hasMany(models.Clientes, { foreignKey: 'id_atividade', as: 'clientes' })
   }
 }
 

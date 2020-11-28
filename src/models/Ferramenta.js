@@ -14,7 +14,7 @@ class Ferramentas extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.Clientes, { foreignKey: 'id_ferramenta', through: 'ferramenta_cliente', as: 'cliente' })
+    this.belongsToMany(models.Clientes, { foreignKey: 'id_ferramenta', through: 'ferramenta_cliente', as: 'clientes' })
   }
 }
 

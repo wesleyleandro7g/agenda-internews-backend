@@ -8,7 +8,10 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-const UserRoutes = require('./routes/Users')
+const AuthRoutes = require('./routes/AuthRoutes')
+const UserRoutes = require('./routes/UserRoutes')
+const SectorRoutes = require('./routes/SectorRoutes')
+const IndustryRoutes = require('./routes/IndustryRoutes')
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -22,7 +25,10 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/auth', AuthRoutes)
 app.use('/users', UserRoutes)
+app.use('/sectors', SectorRoutes)
+app.use('/industry', IndustryRoutes)
 
 app.use((req, res, next) => {
     const error = new Error("Rota não encontrada");

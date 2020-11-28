@@ -28,11 +28,11 @@ class Clientes extends Model {
 
   static associate(models) {
     this.belongsToMany(models.Ferramentas, { foreignKey: 'id_cliente', through: 'ferramenta_cliente', as: 'ferramenta' }),
-    this.hasOne(models.Estados, { foreignKey: 'id_estado', as: 'estado' }),
-    this.hasOne(models.Cidades, { foreignKey: 'id_cidade', as: 'cidade' }),
-    this.hasOne(models.RamoAtividade, { foreignKey: 'id_atividade', as: 'atividade' }),
-    this.hasOne(models.Modulos, { foreignKey: 'id_modulo', as: 'modulo' }),
-    this.hasOne(models.Suporte, { foreignKey: 'id_suporte', as: 'suporte' })
+    this.belongsTo(models.Estados, { foreignKey: 'id_estado', as: 'estado' }),
+    this.belongsTo(models.Cidades, { foreignKey: 'id_cidade', as: 'cidade' }),
+    this.belongsTo(models.RamoAtividade, { foreignKey: 'id_atividade', as: 'atividade' }),
+    this.belongsTo(models.Modulos, { foreignKey: 'id_modulo', as: 'modulo' }),
+    this.belongsTo(models.Suporte, { foreignKey: 'id_suporte', as: 'suporte' })
   }
 }
 
