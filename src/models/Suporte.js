@@ -9,7 +9,7 @@ class Suporte extends Model {
       },
       {
         sequelize,
-        tableName: 'usuarios'
+        tableName: 'suportes'
       }
     );
   }

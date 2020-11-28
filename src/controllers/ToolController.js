@@ -1,35 +1,35 @@
-const Ramo = require('../models/RamoAtividade')
+const Ferramenta = require('../models/Ferramenta')
 
 module.exports = {
-    async createNewIndustry(req, res){
+    async createNewTool(req, res){
         try {
             const { descricao } = req.body
 
-            const industry = await Ramo.findOne({
+            const tool = await Ferramenta.findOne({
                 where: {
                     descricao
                 }
             })
 
-            if(industry) return res.status(400).send('Ramo de atividade já cadastrado!')
+            if(tool) return res.status(400).send('Ferramenta já cadastrada!')
 
-            const newIndustry = await Ramo.create({ descricao })
+            const newTool = await Ferramenta.create({ descricao })
 
-            return res.status(200).json(newIndustry)
+            return res.status(200).json(newTool)
         } catch (error) {
             return res.status(500).json({ error: error });
         }
     },
 
-    async listAllIndustries(req, res){
+    async listAllTools(req, res){
         try {
-            const industries = await Ramo.findAll({
+            const tools = await Ferramenta.findAll({
                 include: {
                     association: 'clientes'
                 }
             })
 
-            return res.status(200).json(industries)
+            return res.status(200).json(tools)
         } catch (error) {
             return res.status(500).json({ error: error });
         }

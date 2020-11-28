@@ -1,35 +1,35 @@
-const Ramo = require('../models/RamoAtividade')
+const Cidade = require('../models/Cidade')
 
 module.exports = {
-    async createNewIndustry(req, res){
+    async createNewCity(req, res){
         try {
             const { descricao } = req.body
 
-            const industry = await Ramo.findOne({
+            const city = await Cidade.findOne({
                 where: {
                     descricao
                 }
             })
 
-            if(industry) return res.status(400).send('Ramo de atividade já cadastrado!')
+            if(city) return res.status(400).send('Cidade já cadastrada!')
 
-            const newIndustry = await Ramo.create({ descricao })
+            const newCity = await Cidade.create({ descricao })
 
-            return res.status(200).json(newIndustry)
+            return res.status(200).json(newCity)
         } catch (error) {
             return res.status(500).json({ error: error });
         }
     },
 
-    async listAllIndustries(req, res){
+    async listAllCities(req, res){
         try {
-            const industries = await Ramo.findAll({
+            const cities = await Cidade.findAll({
                 include: {
                     association: 'clientes'
                 }
             })
 
-            return res.status(200).json(industries)
+            return res.status(200).json(cities)
         } catch (error) {
             return res.status(500).json({ error: error });
         }

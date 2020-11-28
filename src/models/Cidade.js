@@ -14,7 +14,7 @@ class Cidades extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Clientes, { foreignKey: 'id_cidade', as: 'cliente' })
+    this.hasMany(models.Clientes, { foreignKey: 'id_cidade', as: 'clientes' })
   }
 }
 
