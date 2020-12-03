@@ -13,6 +13,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      id_estado: {
+        type: Sequelize.INTEGER,
+        references: { model: 'estados', key: 'id' },
+        onUpdate: 'RESTRICT',
+        onDelete: 'RESTRICT'
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

@@ -3,7 +3,7 @@ const Cidade = require('../models/Cidade')
 module.exports = {
     async createNewCity(req, res){
         try {
-            const { descricao } = req.body
+            const { descricao, id_estado } = req.body
 
             const city = await Cidade.findOne({
                 where: {
@@ -13,7 +13,7 @@ module.exports = {
 
             if(city) return res.status(400).send('Cidade já cadastrada!')
 
-            const newCity = await Cidade.create({ descricao })
+            const newCity = await Cidade.create({ descricao, id_estado })
 
             return res.status(200).json(newCity)
         } catch (error) {

@@ -5,7 +5,7 @@ module.exports = {
         try {
             const states = await Estados.findAll({
                 include: {
-                    association: 'clientes'
+                    association: 'cidades'
                 }
             })
 

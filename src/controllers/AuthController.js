@@ -8,6 +8,7 @@ module.exports = {
   async userAuthenticate(req, res) {
     try {
       const { nome, senha } = req.body;
+      console.log(nome)
 
       if (!nome || !senha)
         return res.status(400).send({ error: "Dados incompletos" });

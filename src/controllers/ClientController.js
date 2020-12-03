@@ -14,7 +14,6 @@ module.exports = {
                 identificador_internews,
                 mensalidade,
                 id_atividade,
-                id_estado,
                 id_cidade,
                 id_modulo,
                 id_suporte
@@ -39,7 +38,6 @@ module.exports = {
                 identificador_internews,
                 mensalidade,
                 id_atividade,
-                id_estado,
                 id_cidade,
                 id_modulo,
                 id_suporte
@@ -55,7 +53,6 @@ module.exports = {
         try {
             const clients = await Cliente.findAll({
                 include: [
-                    { association: 'estado' },
                     { association: 'cidade' },
                     { association: 'atividade' },
                     { association: 'modulo' },
