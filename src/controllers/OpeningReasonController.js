@@ -23,6 +23,16 @@ module.exports = {
 
     async listAllOpeningReasons(req, res){
         try {
+            const reason = await MotivoAbertura.findAll()
+
+            return res.status(200).json(reason)
+        } catch (error) {
+            return res.status(500).json({ error: error });
+        }
+    },
+
+    async listAttendencesOpeningReason(req, res){
+        try {
             const reason = await MotivoAbertura.findAll({
                 include: {
                     association: 'atendimentos'

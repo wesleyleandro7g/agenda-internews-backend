@@ -1,4 +1,5 @@
 const Cliente = require('../models/Clientes')
+const Suporte = require('../models/Suporte')
 
 module.exports = {
     async createNewClient(req, res){
@@ -58,6 +59,36 @@ module.exports = {
                     { association: 'modulo' },
                     { association: 'suporte' },
                 ]
+            })
+
+            return res.status(200).json(clients)
+        } catch (error) {
+            return res.status(500).json({ error: error });
+        }
+    },
+
+    async listAllClientsSupport(req, res){
+        try {
+            const { id_usuario } = req.headers
+
+            const suporte = await Suporte.findOne({
+                where: {
+                    id_usuario
+                }
+            })
+
+            if(!suporte) return res.status(404).send('Suporte não encontrado!')
+
+            const clients = await Cliente.findAll({
+                include: [
+                    { association: 'cidade' },
+                    { association: 'atividade' },
+                    { association: 'modulo' },
+                    { association: 'suporte' },
+                ],
+                where: {
+                    id_suporte: suporte.id
+                }
             })
 
             return res.status(200).json(clients)

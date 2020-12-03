@@ -23,6 +23,16 @@ module.exports = {
 
     async listAllClosingReasons(req, res){
         try {
+            const reason = await MotivoFechamento.findAll()
+
+            return res.status(200).json(reason)
+        } catch (error) {
+            return res.status(500).json({ error: error });
+        }
+    },
+
+    async listDetailsClosingReason(req, res){
+        try {
             const reason = await MotivoFechamento.findAll({
                 include: {
                     association: 'atendimentos'
