@@ -6,22 +6,22 @@ module.exports = {
       "modulos",
       [
         {
-          descricao: "Standard",
+          descricao: "STANDARD",
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
-          descricao: "Normal",
+          descricao: "NORMAL",
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
-          descricao: "Intermediário",
+          descricao: "INTERMEDIÁRIO",
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
-          descricao: "Avançado",
+          descricao: "AVANÇADO",
           created_at: new Date(),
           updated_at: new Date(),
         },

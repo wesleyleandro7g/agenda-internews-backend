@@ -15,7 +15,7 @@ module.exports = {
       },
       contato_solicitante: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       cliente_solicitou: {
         type: Sequelize.BOOLEAN,

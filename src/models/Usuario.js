@@ -18,7 +18,8 @@ class Usuarios extends Model {
 
   static associate(models) {
     this.belongsTo(models.Setores, { foreignKey: 'id_setor', as: 'setor' }),
-    this.hasMany(models.Atendimentos, { foreignKey: 'id_usuario', as: 'atendimentos' })
+    this.hasMany(models.Atendimentos, { foreignKey: 'id_usuario', as: 'atendimentos' }),
+    this.hasOne(models.Suporte, { foreignKey: 'id_usuario', as: 'suporte' })
   }
 }
 

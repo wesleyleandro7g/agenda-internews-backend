@@ -52,16 +52,19 @@ module.exports = {
 
     async listAllClients(req, res){
         try {
-            const clients = await Cliente.findAll({
+            const { count, rows: clients } = await Cliente.findAndCountAll({
                 include: [
                     { association: 'cidade' },
                     { association: 'atividade' },
                     { association: 'modulo' },
                     { association: 'suporte' },
-                ]
+                ],
+                order: [
+                    ['id', 'ASC']
+                  ]
             })
 
-            return res.status(200).json(clients)
+            return res.status(200).json({ clients, count })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -79,7 +82,7 @@ module.exports = {
 
             if(!suporte) return res.status(404).send('Suporte não encontrado!')
 
-            const clients = await Cliente.findAll({
+            const { count, rows: clients } = await Cliente.findAndCountAll({
                 include: [
                     { association: 'cidade' },
                     { association: 'atividade' },
@@ -91,7 +94,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).json(clients)
+            return res.status(200).json({ clients, count})
         } catch (error) {
             return res.status(500).json({ error: error });
         }
