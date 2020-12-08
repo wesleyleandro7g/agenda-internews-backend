@@ -33,10 +33,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      status: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       id_cliente: {
         type: Sequelize.INTEGER,
         references: { model: 'clientes', key: 'id' },
@@ -73,6 +69,12 @@ module.exports = {
       id_setor: {
         type: Sequelize.INTEGER,
         references: { model: 'setores', key: 'id' },
+        onUpdate: 'RESTRICT',
+        onDelete: 'RESTRICT'
+      },
+      id_status: {
+        type: Sequelize.INTEGER,
+        references: { model: 'status_atendimento', key: 'id' },
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT'
       },

@@ -13,6 +13,7 @@ const Cidade = require('../models/Cidade')
 const Abertura = require('../models/MotivoAbertura')
 const Fechamento = require('../models/MotivoFechamento')
 const Atendimentos = require('../models/Atendimentos')
+const Status = require('../models/StatusAtendimento')
 
 const connection = new Sequelize(dbConfig);
 
@@ -27,6 +28,7 @@ Estado.init(connection)
 Cidade.init(connection)
 Abertura.init(connection)
 Fechamento.init(connection)
+Status.init(connection)
 Atendimentos.init(connection)
 
 Setores.associate(connection.models)
@@ -40,6 +42,7 @@ Estado.associate(connection.models)
 Cidade.associate(connection.models)
 Abertura.associate(connection.models)
 Fechamento.associate(connection.models)
+Status.associate(connection.models)
 Atendimentos.associate(connection.models)
 
 module.exports = connection;

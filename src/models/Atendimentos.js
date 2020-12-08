@@ -10,7 +10,7 @@ class Atendimentos extends Model {
         reagendado: DataTypes.BOOLEAN,
         data_agendamento: DataTypes.DATE,
         hora_agendamento: DataTypes.STRING,
-        status: DataTypes.STRING,
+        id_status: DataTypes.STRING,
         id_cliente: DataTypes.INTEGER,
         id_usuario: DataTypes.INTEGER,
         id_abertura: DataTypes.INTEGER,
@@ -31,7 +31,8 @@ class Atendimentos extends Model {
     this.belongsTo(models.MotivoAbertura, { foreignKey: 'id_abertura', as: 'abertura' }),
     this.belongsTo(models.MotivoFechamento, { foreignKey: 'id_fechamento', as: 'fechamento' }),
     this.belongsTo(models.Suporte, { foreignKey: 'id_suporte', as: 'suporte' }),
-    this.belongsTo(models.Setores, { foreignKey: 'id_setor', as: 'setor' })
+    this.belongsTo(models.Setores, { foreignKey: 'id_setor', as: 'setor' }),
+    this.belongsTo(models.StatusAtendimento, { foreignKey: 'id_status', as: 'status' })
   }
 }
 
