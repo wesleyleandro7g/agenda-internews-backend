@@ -1,5 +1,5 @@
 const Ferramenta = require('../models/Ferramenta')
-const Cliente = require('../models/Clientes')
+const FerramentaCliente = require('../models/FerramentaCliente')
 
 module.exports = {
     async createNewTool(req, res){
@@ -24,21 +24,16 @@ module.exports = {
 
     async registerClientTools(req, res){
         try {
-            const { id_ferramenta, id_cliente } = req.body
+            const { ferramentas, id_cliente } = req.body
 
-            // const tool = await Ferramenta.findOne({
-            //     where: {
-            //         descricao
-            //     }
-            // })
-
-            // if(!tool) return res.status(400).json({ mensage: 'Ferramenta não cadastrada!' })
-
-            const insertClientTool = await Ferramenta.addClientes(Cliente, {
-                id_cliente: 1
+            ferramentas.forEach(item => {
+                FerramentaCliente.create({
+                    id_cliente,
+                    id_ferramenta: item.id_ferramenta
+                })
             })
 
-            return res.status(200).json(insertClientTool)
+            return res.status(200).json({ mensage: 'Ferramenta(s) adicionada(s)!' })
         } catch (error) {
             console.log(error)
             return res.status(500).json({ error: error });
@@ -47,11 +42,7 @@ module.exports = {
 
     async listAllTools(req, res){
         try {
-            const tools = await Ferramenta.findAll({
-                include: {
-                    association: 'clientes'
-                }
-            })
+            const tools = await Ferramenta.findAll()
 
             return res.status(200).json(tools)
         } catch (error) {

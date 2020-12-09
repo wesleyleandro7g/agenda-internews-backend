@@ -10,7 +10,8 @@ module.exports = {
                     { association: 'suporte' },
                     { association: 'abertura' },
                     { association: 'status' },
-                    { association: 'usuario' }
+                    { association: 'usuario' },
+                    { association: 'fechamento' }
                 ]                
             }, {
                 order: ['id', 'DESC']
@@ -40,7 +41,8 @@ module.exports = {
                     { association: 'suporte' },
                     { association: 'abertura' },
                     { association: 'status' },
-                    { association: 'usuario' }
+                    { association: 'usuario' },
+                    { association: 'fechamento' }
                 ],
                 where: {
                     id_suporte: suporte.id,

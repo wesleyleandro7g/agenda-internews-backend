@@ -1,4 +1,5 @@
 const Atendimentos = require('../models/Atendimentos')
+const MotivoFechAtend = require('../models/MotivoFechAtend')
 
 module.exports = {
     async createNewAttendance(req, res){
@@ -80,20 +81,28 @@ module.exports = {
 
     async closeAttendence(req, res){
         try {
-            const { id, id_fechamento } = req.body
+            const { id_atendimento, fech_motivos, id_suporte } = req.body
+
+            fech_motivos.forEach(item => {
+                MotivoFechAtend.create({
+                    id_atendimento,
+                    id_motivo: item.id_fechamento
+
+                })
+            })
 
             await Atendimentos.update({
-                id_fechamento,
+                id_suporte,
                 id_status: 4
-
             }, {
                 where: {
-                    id
+                    id: id_atendimento
                 }
             })
 
             return res.status(200).json({ mensage: 'Atendimento finalizado!' })
         } catch (error) {
+            console.log(error)
             return res.status(500).json({ error: error });
         }
     }

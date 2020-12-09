@@ -26,7 +26,7 @@ class Clientes extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.Ferramentas, { foreignKey: 'id_cliente', through: 'ferramenta_cliente', as: 'ferramenta' }),
+    this.belongsToMany(models.Ferramentas, { foreignKey: 'id_cliente', through: 'ferramenta_cliente', as: 'ferramentas' }),
     this.belongsTo(models.Cidades, { foreignKey: 'id_cidade', as: 'cidade' }),
     this.belongsTo(models.RamoAtividade, { foreignKey: 'id_atividade', as: 'atividade' }),
     this.belongsTo(models.Modulos, { foreignKey: 'id_modulo', as: 'modulo' }),

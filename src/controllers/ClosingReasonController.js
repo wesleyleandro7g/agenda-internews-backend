@@ -1,4 +1,5 @@
 const MotivoFechamento = require('../models/MotivoFechamento')
+const MotivoFechAtend = require('../models/MotivoFechAtend')
 
 module.exports = {
     async createNewClosingReason(req, res){
@@ -33,11 +34,7 @@ module.exports = {
 
     async listDetailsClosingReason(req, res){
         try {
-            const reason = await MotivoFechamento.findAll({
-                include: {
-                    association: 'atendimentos'
-                }
-            })
+            const reason = await MotivoFechAtend.findAll()
 
             return res.status(200).json(reason)
         } catch (error) {

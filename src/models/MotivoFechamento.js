@@ -14,7 +14,7 @@ class MotivoFechamento extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Atendimentos, { foreignKey: 'id_fechamento', as: 'atendimentos' })
+    this.belongsToMany(models.Atendimentos, { foreignKey: 'id_motivo', through: 'motivo_fech_atend', as: 'atendimentos' })
   }
 }
 

@@ -9,5 +9,6 @@ router.get('/opening/index', OpeningReasonController.listAllOpeningReasons)
 
 router.post('/closing/create', ClosingReasonController.createNewClosingReason)
 router.get('/closing/index', ClosingReasonController.listAllClosingReasons)
+router.get('/closing/details', ClosingReasonController.listDetailsClosingReason)
 
 module.exports = router

@@ -58,6 +58,7 @@ module.exports = {
                     { association: 'atividade' },
                     { association: 'modulo' },
                     { association: 'suporte' },
+                    { association: 'ferramentas' }
                 ],
                 order: [
                     ['id', 'ASC']
@@ -88,6 +89,7 @@ module.exports = {
                     { association: 'atividade' },
                     { association: 'modulo' },
                     { association: 'suporte' },
+                    { association: 'ferramentas' }
                 ],
                 where: {
                     id_suporte: suporte.id

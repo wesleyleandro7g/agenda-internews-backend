@@ -29,10 +29,10 @@ class Atendimentos extends Model {
     this.belongsTo(models.Clientes, { foreignKey: 'id_cliente', as: 'cliente' }),
     this.belongsTo(models.Usuarios, { foreignKey: 'id_usuario', as: 'usuario' }),
     this.belongsTo(models.MotivoAbertura, { foreignKey: 'id_abertura', as: 'abertura' }),
-    this.belongsTo(models.MotivoFechamento, { foreignKey: 'id_fechamento', as: 'fechamento' }),
     this.belongsTo(models.Suporte, { foreignKey: 'id_suporte', as: 'suporte' }),
     this.belongsTo(models.Setores, { foreignKey: 'id_setor', as: 'setor' }),
-    this.belongsTo(models.StatusAtendimento, { foreignKey: 'id_status', as: 'status' })
+    this.belongsTo(models.StatusAtendimento, { foreignKey: 'id_status', as: 'status' }),
+    this.belongsToMany(models.MotivoFechamento, { foreignKey: 'id_atendimento', through: 'motivo_fech_atend', as: 'fechamento' })
   }
 }
 
