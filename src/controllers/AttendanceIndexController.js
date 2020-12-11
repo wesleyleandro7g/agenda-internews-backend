@@ -96,5 +96,34 @@ module.exports = {
             console.log(error)
             return res.status(500).json({ error: error });
         }
-    }
+    },
+
+    async listClientAttendences(req, res){
+        try {
+            const { id_cliente } = req.params
+
+            
+            const { count, rows: attendences } = await Atendimentos.findAndCountAll({
+                include: [
+                    { association: 'suporte' },
+                    { association: 'abertura' },
+                    { association: 'status' },
+                    { association: 'usuario' }
+                ],
+                where: {
+                    id_cliente,
+                    id_status: [1, 2, 3]
+                },
+                order: [
+                    ['id', 'DESC'],
+                    ['id_status', 'ASC']
+                ]
+            })
+
+            return res.status(200).json({ attendences, count })
+        } catch (error) {
+            console.log(error)
+            return res.status(500).json({ error: error });
+        }
+    },
 }

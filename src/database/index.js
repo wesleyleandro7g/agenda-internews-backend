@@ -16,6 +16,7 @@ const Atendimentos = require('../models/Atendimentos')
 const Status = require('../models/StatusAtendimento')
 const FerrametaCliente = require('../models/FerramentaCliente')
 const MotivoFechAtend = require('../models/MotivoFechAtend')
+const AtividadeInterna = require('../models/AtividadeInterna')
 
 const connection = new Sequelize(dbConfig);
 
@@ -34,6 +35,7 @@ Status.init(connection)
 Atendimentos.init(connection)
 FerrametaCliente.init(connection)
 MotivoFechAtend.init(connection)
+AtividadeInterna.init(connection)
 
 Setores.associate(connection.models)
 Usuario.associate(connection.models)
@@ -50,5 +52,6 @@ Status.associate(connection.models)
 Atendimentos.associate(connection.models)
 FerrametaCliente.associate(connection.models)
 MotivoFechAtend.associate(connection.models)
+AtividadeInterna.associate(connection.models)
 
 module.exports = connection;

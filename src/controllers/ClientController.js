@@ -15,6 +15,7 @@ module.exports = {
                 identificador_internews,
                 mensalidade,
                 id_atividade,
+                id_atividade_interna,
                 id_cidade,
                 id_modulo,
                 id_suporte
@@ -39,6 +40,7 @@ module.exports = {
                 identificador_internews,
                 mensalidade,
                 id_atividade,
+                id_atividade_interna,
                 id_cidade,
                 id_modulo,
                 id_suporte
@@ -87,6 +89,7 @@ module.exports = {
                 include: [
                     { association: 'cidade' },
                     { association: 'atividade' },
+                    { association: 'atividade_interna' },
                     { association: 'modulo' },
                     { association: 'suporte' },
                     { association: 'ferramentas' }

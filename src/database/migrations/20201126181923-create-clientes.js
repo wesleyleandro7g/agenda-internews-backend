@@ -63,6 +63,12 @@ module.exports = {
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT'
       },
+      id_atividade_interna: {
+        type: Sequelize.INTEGER,
+        references: { model: 'modulos', key: 'id' },
+        onUpdate: 'RESTRICT',
+        onDelete: 'RESTRICT'
+      },
       id_suporte: {
         type: Sequelize.INTEGER,
         references: { model: 'suportes', key: 'id' },

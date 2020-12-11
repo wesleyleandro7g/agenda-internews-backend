@@ -21,6 +21,8 @@ const ReasonRoutes = require('./routes/ReasonRoutes')
 const ClientsRoutes = require('./routes/ClientsRoutes')
 const AttendenceIndexRoutes = require('./routes/AttendenceIndexRoutes')
 const AttendenceUpdateRoutes = require('./routes/AttendenceUpdateRoutes')
+const InternalActivitiesRoutes = require('./routes/InternalActivitiesRoutes')
+const DashboardRoutes = require('./routes/DashboardRoutes')
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -38,6 +40,7 @@ app.use('/auth', AuthRoutes)
 app.use('/users', UserRoutes)
 app.use('/sectors', SectorRoutes)
 app.use('/industry', IndustryRoutes)
+app.use('/activity', InternalActivitiesRoutes)
 app.use('/module', ModuleRoutes)
 app.use('/states', StateRoutes)
 app.use('/cities', CityRoutes)
@@ -47,6 +50,7 @@ app.use('/reasons', ReasonRoutes)
 app.use('/clients', ClientsRoutes)
 app.use('/attendence/index', AttendenceIndexRoutes)
 app.use('/attendence/update', AttendenceUpdateRoutes)
+app.use('/dashboard', DashboardRoutes)
 
 app.use((req, res, next) => {
     const error = new Error("Rota não encontrada");
