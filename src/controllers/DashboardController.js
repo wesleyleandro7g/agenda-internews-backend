@@ -166,8 +166,9 @@ module.exports = {
                 })
             })
 
-            const newObject = Object.filter((item, index) => Object.indexOf(item) === index)
-            const clientsServerd = newObject.length
+            // const newObject = Object.filter((item, index) => Object.indexOf(item) === index)
+            const uniqueValue = [...new Set(Object)]
+            const clientsServerd = uniqueValue.length
 
             Data.push(
                 {
@@ -180,9 +181,8 @@ module.exports = {
                 }
             )
 
-            const percentage = ((clientsServerd * 100) / count )
 
-            return res.status(200).json({ Data, percentage })
+            return res.status(200).json({ Data })
         } catch (error) {
             return res.status(500).json({ error: error });
         }

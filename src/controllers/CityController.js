@@ -24,9 +24,10 @@ module.exports = {
     async listAllCities(req, res){
         try {
             const cities = await Cidade.findAll({
-                include: {
-                    association: 'clientes'
-                }
+                include: [
+                    { association: 'clientes' },
+                    { association: 'estado' }
+                ]
             })
 
             return res.status(200).json(cities)

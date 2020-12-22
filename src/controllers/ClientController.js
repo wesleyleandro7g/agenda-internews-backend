@@ -63,7 +63,7 @@ module.exports = {
                     { association: 'ferramentas' }
                 ],
                 order: [
-                    ['id', 'ASC']
+                    ['razao_social', 'ASC']
                   ]
             })
 
