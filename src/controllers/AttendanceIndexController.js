@@ -2,7 +2,7 @@ const Atendimentos = require('../models/Atendimentos')
 const Suporte = require('../models/Suporte')
 
 module.exports = {
-    async listAllAttendences(req, res){
+    async listAllAttendencesNotClosed(req, res){
         try {
             const { count, rows: attendences } = await Atendimentos.findAndCountAll({
                 include: [
@@ -12,9 +12,38 @@ module.exports = {
                     { association: 'status' },
                     { association: 'usuario' },
                     { association: 'fechamento' }
-                ]                
-            }, {
-                order: ['id', 'DESC']
+                ],
+                where: {
+                    id_status: [1, 2, 3]
+                },
+                order: [
+                    ['id', 'DESC']
+                ]
+            })
+
+            return res.status(200).json({ attendences, count })
+        } catch (error) {
+            return res.status(500).json({ error: error });
+        }
+    },
+
+    async listAllAttendencesClosed(req, res){
+        try {
+            const { count, rows: attendences } = await Atendimentos.findAndCountAll({
+                include: [
+                    { association: 'cliente' },
+                    { association: 'suporte' },
+                    { association: 'abertura' },
+                    { association: 'status' },
+                    { association: 'usuario' },
+                    { association: 'fechamento' }
+                ],
+                where: {
+                    id_status: 4
+                },
+                order: [
+                    ['id', 'DESC']
+                ]
             })
 
             return res.status(200).json({ attendences, count })

@@ -23,6 +23,7 @@ const AttendenceIndexRoutes = require('./routes/AttendenceIndexRoutes')
 const AttendenceUpdateRoutes = require('./routes/AttendenceUpdateRoutes')
 const InternalActivitiesRoutes = require('./routes/InternalActivitiesRoutes')
 const DashboardRoutes = require('./routes/DashboardRoutes')
+const DashboardManagerRoutes = require('./routes/DashboardManagerRoutes')
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -51,6 +52,7 @@ app.use('/clients', ClientsRoutes)
 app.use('/attendence/index', AttendenceIndexRoutes)
 app.use('/attendence/update', AttendenceUpdateRoutes)
 app.use('/dashboard', DashboardRoutes)
+app.use('/dashboard/manager', DashboardManagerRoutes)
 
 app.use((req, res, next) => {
     const error = new Error("Rota não encontrada");
