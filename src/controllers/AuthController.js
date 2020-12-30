@@ -15,9 +15,14 @@ module.exports = {
       const user = await User.findOne({
         where: {
           nome
-        }, include: {
-          association: 'setor'
-      } });
+        }, include: [
+          {
+            association: 'setor'
+          },
+          {
+            association: 'suporte'
+          }
+        ]});
 
       if (!user)
         return res.status(404).send({ error: "Usuário não encontrado" });
@@ -31,12 +36,15 @@ module.exports = {
         userName: user.dataValues.nome,
         sectorID: user.dataValues.setor.id,
         sectorName: user.dataValues.setor.nome,
+        supportID: user.dataValues.suporte ? user.dataValues.suporte.id : null,
+        supportName: user.dataValues.suporte ? user.dataValues.suporte.nome : null
       };
 
       const newToken = await JWT.generate(payload, process.env.AUTH_USER || '0a3ccfe0f3385d22f6ca450f00a4d97e', 8400);
 
       return res.status(200).json({ token: newToken, payload: payload });
     } catch (error) {
+      console.log(error)
       return res.status(500).json({ error: error });
     }
   },

@@ -51,12 +51,6 @@ module.exports = {
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT'
       },
-      id_estado: {
-        type: Sequelize.INTEGER,
-        references: { model: 'estados', key: 'id' },
-        onUpdate: 'RESTRICT',
-        onDelete: 'RESTRICT'
-      },
       id_cidade: {
         type: Sequelize.INTEGER,
         references: { model: 'cidades', key: 'id' },
@@ -64,6 +58,12 @@ module.exports = {
         onDelete: 'RESTRICT'
       },
       id_modulo: {
+        type: Sequelize.INTEGER,
+        references: { model: 'modulos', key: 'id' },
+        onUpdate: 'RESTRICT',
+        onDelete: 'RESTRICT'
+      },
+      id_atividade_interna: {
         type: Sequelize.INTEGER,
         references: { model: 'modulos', key: 'id' },
         onUpdate: 'RESTRICT',

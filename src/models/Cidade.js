@@ -5,6 +5,7 @@ class Cidades extends Model {
     super.init(
       {
         descricao: DataTypes.STRING,
+        id_estado: DataTypes.INTEGER
       },
       {
         sequelize,
@@ -14,7 +15,8 @@ class Cidades extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Clientes, { foreignKey: 'id_cidade', as: 'clientes' })
+    this.hasMany(models.Clientes, { foreignKey: 'id_cidade', as: 'clientes' }),
+    this.belongsTo(models.Estados, { foreignKey: 'id_estado', as: 'estado' })
   }
 }
 

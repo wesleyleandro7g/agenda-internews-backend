@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("cidades", {
+    await queryInterface.createTable("status_atendimento", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -12,12 +12,6 @@ module.exports = {
       descricao: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      id_estado: {
-        type: Sequelize.INTEGER,
-        references: { model: 'estados', key: 'id' },
-        onUpdate: 'RESTRICT',
-        onDelete: 'RESTRICT'
       },
       created_at: {
         type: Sequelize.DATE,
@@ -31,6 +25,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("cidades");
+    await queryInterface.dropTable("status_atendimento");
   },
 };

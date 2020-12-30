@@ -14,7 +14,7 @@ class Clientes extends Model {
         identificador_internews: DataTypes.STRING,
         mensalidade: DataTypes.INTEGER,
         id_atividade: DataTypes.INTEGER,
-        id_estado: DataTypes.INTEGER,
+        id_atividade_interna: DataTypes.INTEGER,
         id_cidade: DataTypes.INTEGER,
         id_modulo: DataTypes.INTEGER,
         id_suporte: DataTypes.INTEGER,
@@ -27,12 +27,13 @@ class Clientes extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.Ferramentas, { foreignKey: 'id_cliente', through: 'ferramenta_cliente', as: 'ferramenta' }),
-    this.belongsTo(models.Estados, { foreignKey: 'id_estado', as: 'estado' }),
+    this.belongsToMany(models.Ferramentas, { foreignKey: 'id_cliente', through: 'ferramenta_cliente', as: 'ferramentas' }),
     this.belongsTo(models.Cidades, { foreignKey: 'id_cidade', as: 'cidade' }),
     this.belongsTo(models.RamoAtividade, { foreignKey: 'id_atividade', as: 'atividade' }),
+    this.belongsTo(models.AtividadeInterna, { foreignKey: 'id_atividade_interna', as: 'atividade_interna' }),
     this.belongsTo(models.Modulos, { foreignKey: 'id_modulo', as: 'modulo' }),
-    this.belongsTo(models.Suporte, { foreignKey: 'id_suporte', as: 'suporte' })
+    this.belongsTo(models.Suporte, { foreignKey: 'id_suporte', as: 'suporte' }),
+    this.hasMany(models.Atendimentos, { foreignKey: 'id_cliente', as: 'atendimento' })
   }
 }
 

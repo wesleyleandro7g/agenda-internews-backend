@@ -2,20 +2,22 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("cidades", {
+    await queryInterface.createTable("motivo_fech_atend", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
-      descricao: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      id_estado: {
+      id_atendimento: {
         type: Sequelize.INTEGER,
-        references: { model: 'estados', key: 'id' },
+        references: { model: 'atendimentos', key: 'id' },
+        onUpdate: 'RESTRICT',
+        onDelete: 'RESTRICT'
+      },
+      id_motivo: {
+        type: Sequelize.INTEGER,
+        references: { model: 'motivo_fechamento', key: 'id' },
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT'
       },
@@ -31,6 +33,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("cidades");
+    await queryInterface.dropTable("motivo_fech_atend");
   },
 };

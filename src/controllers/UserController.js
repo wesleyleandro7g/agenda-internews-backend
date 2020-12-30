@@ -32,9 +32,14 @@ module.exports = {
     async listAllUsers(req, res){
         try {
             const users = await Usuario.findAll({
-                include: {
-                    association: 'setor'
-                }
+                include: [
+                    {
+                        association: 'setor'
+                    },
+                    {
+                        association: 'suporte'
+                    }
+                ]
             })
 
             return res.status(200).json(users)
