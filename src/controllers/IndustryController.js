@@ -21,7 +21,7 @@ module.exports = {
         }
     },
 
-    async listAllIndustries(req, res){
+    async listAllIndustries(req, res){ // Remover a associação de clientes
         try {
             const industries = await Ramo.findAll({
                 include: {
@@ -30,6 +30,51 @@ module.exports = {
             })
 
             return res.status(200).json(industries)
+        } catch (error) {
+            return res.status(500).json({ error: error });
+        }
+    },
+
+    async updateIndustrie(req, res){
+        try {
+            const { id } = req.params
+            const { descricao } = req.body
+
+            if(!descricao) return res.status(404).send({ error: 'Informe o novo valor!' })
+
+            const industrie = await Ramo.findByPk(id)
+
+            if (!industrie) return res.status(404).send({ error: 'Ramo não encontrado!' })
+
+            await Ramo.update({
+                descricao
+            },{
+                where: {
+                    id
+                }
+            })
+
+            return res.status(200).send("Sucesso!")
+        } catch (error) {
+            return res.status(500).json({ error: error });
+        }
+    },
+
+    async deleteIndustrie(req, res){
+        try {
+            const { id } = req.params
+
+            const industrie = await Ramo.findByPk(id)
+
+            if (!industrie) return res.status(404).send({ error: 'Ramo não encontado!' })
+
+            await Ramo.destroy({
+                where: {
+                    id
+                }
+            })
+
+            return res.status(200).send("Sucesso!")
         } catch (error) {
             return res.status(500).json({ error: error });
         }
