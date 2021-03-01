@@ -6,6 +6,8 @@ module.exports = {
         try {
             const { nome, id_setor, contato, senha } = req.body
 
+            if (!nome || !id_setor || !senha) return res.status(400).json({ response: 'Dados incompletos!' })
+
             const newPassword = await bcrypt.hash(senha, 10);
 
             const user = await Usuario.findOne({
@@ -14,16 +16,16 @@ module.exports = {
                 }
             })
 
-            if(user) return res.status(400).send('Nome de usuário em uso!')
+            if(user) return res.status(400).json({ response: 'Já existe um usuário com esse nome!' })
 
-            const newUser = await Usuario.create({
+            await Usuario.create({
                 nome,
                 id_setor,
                 contato,
                 senha: newPassword
             })
 
-            return res.status(200).json(newUser)
+            return res.status(200).json({ response: 'Usuário cadastro!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }

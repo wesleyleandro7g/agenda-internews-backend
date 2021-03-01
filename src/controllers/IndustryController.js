@@ -5,17 +5,19 @@ module.exports = {
         try {
             const { descricao } = req.body
 
+            if (!descricao) return res.status(400).json({ response: 'Dados incompletos!' })
+
             const industry = await Ramo.findOne({
                 where: {
                     descricao
                 }
             })
 
-            if(industry) return res.status(400).send('Ramo de atividade já cadastrado!')
+            if(industry) return res.status(400).json({ response: 'Ramo de atividade já cadastrado!' })
 
-            const newIndustry = await Ramo.create({ descricao })
+            await Ramo.create({ descricao })
 
-            return res.status(200).json(newIndustry)
+            return res.status(200).json({ response: 'Ramo de Atividade Cadastrado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -29,6 +31,8 @@ module.exports = {
                 }
             })
 
+            if (industries.length <= 0) res.status(404).json({ response: 'Nenhum Ramo de Atividade Cadastrado!' })
+
             return res.status(200).json(industries)
         } catch (error) {
             return res.status(500).json({ error: error });
@@ -40,11 +44,11 @@ module.exports = {
             const { id } = req.params
             const { descricao } = req.body
 
-            if(!descricao) return res.status(404).send({ error: 'Informe o novo valor!' })
+            if(!descricao) return res.status(404).json({ response: 'Informe o novo valor!' })
 
             const industrie = await Ramo.findByPk(id)
 
-            if (!industrie) return res.status(404).send({ error: 'Ramo não encontrado!' })
+            if (!industrie) return res.status(404).json({ response: 'Ramo não encontrado!' })
 
             await Ramo.update({
                 descricao
@@ -54,7 +58,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).send("Sucesso!")
+            return res.status(200).json({ response: 'Ramo alterado com sucesso!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -64,9 +68,17 @@ module.exports = {
         try {
             const { id } = req.params
 
-            const industrie = await Ramo.findByPk(id)
+            const industrie = await Ramo.findByPk(id, {
+                include: {
+                    association: 'clientes'
+                }
+            })
 
             if (!industrie) return res.status(404).send({ error: 'Ramo não encontado!' })
+
+            if (industrie.clientes.length >= 1) {
+                return res.status(404).send({ error: 'Este ramo não pode ser deletado, pois possui clientes associados a ele!' })
+            }
 
             await Ramo.destroy({
                 where: {
@@ -74,7 +86,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).send("Sucesso!")
+            return res.status(200).json({ response: 'Ramo deletado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
