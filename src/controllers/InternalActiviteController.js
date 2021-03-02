@@ -7,15 +7,16 @@ module.exports = {
 
             if(!descricao) return res.status(400).json({ response: 'Informe a descrição!' })
 
-            const activity = await AtividadeInterna.findOne({
+            const [ activity, created ] = await AtividadeInterna.findOrCreate({
                 where: {
+                    descricao
+                },
+                defaults: {
                     descricao
                 }
             })
 
-            if(activity) return res.status(400).json({ response: 'Atividade já cadastrada!' })
-
-            await AtividadeInterna.create({ descricao })
+            if(!created) return res.status(400).json({ response: `A atividade '${activity.descricao}' já está cadastrada!` })
 
             return res.status(200).json({ response: 'Atividade cadastrada!' })
         } catch (error) {
@@ -42,7 +43,7 @@ module.exports = {
 
             const activity = await AtividadeInterna.findOne({ where: { descricao } })
 
-            if(activity) return res.status(400).json({ response: 'Descrição já utilizada!' })
+            if(activity) return res.status(400).json({ response: 'Essa descrição está em uso, ou é a igual a anterior!' })
 
             await AtividadeInterna.update({
                 descricao
