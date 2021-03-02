@@ -44,11 +44,11 @@ module.exports = {
             const { id } = req.params
             const { descricao } = req.body
 
-            if(!descricao) return res.status(404).json({ response: 'Informe o novo valor!' })
+            if(!descricao) return res.status(400).json({ response: 'Informe o novo valor!' })
 
-            const industrie = await Ramo.findByPk(id)
+            const industrie = await Ramo.findOne({ where: { descricao } })
 
-            if (!industrie) return res.status(404).json({ response: 'Ramo não encontrado!' })
+            if (industrie) return res.status(400).json({ response: 'Descrição já utilizada!' })
 
             await Ramo.update({
                 descricao
