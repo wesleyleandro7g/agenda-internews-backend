@@ -50,7 +50,7 @@ module.exports = {
             const city = await Cidade.findOne({ where: { descricao } })
 
             if (city && city.id_estado === id_estado) {
-                return res.status(400).json({ response: 'Essa descrição está em uso, ou é a igual a anterior!' })
+                return res.status(400).json({ response: 'Essa descrição está em uso, ou é a igual ao anterior!' })
             }
 
             await Cidade.update({
