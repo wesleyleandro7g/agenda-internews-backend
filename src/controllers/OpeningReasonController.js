@@ -14,9 +14,9 @@ module.exports = {
                 }
             })
 
-            if (!created) return res.status(400).json({ response: `Motivo de abertura '${reason.descricao}' já cadastrado!` })
+            if (!created) return res.status(200).json({ message: `Motivo de abertura '${reason.descricao}' já cadastrado!` })
 
-            return res.status(200).json({ response: 'Motivo de abertura cadastrado!' })
+            return res.status(200).json({ message: 'Motivo de abertura cadastrado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -37,7 +37,7 @@ module.exports = {
             const { id } = req.params
             const { descricao } = req.body
 
-            if (!descricao) return res.status(400).json({ response: 'Dados incompletos!' })
+            if (!descricao) return res.status(200).json({ message: 'Dados incompletos!' })
 
             const opening = await MotivoAbertura.findByPk(id, {
                 include: {
@@ -46,7 +46,7 @@ module.exports = {
             })
 
             if (opening.atendimentos.length >= 1) {
-                return res.status(400).json({ response: 'Não é possível deletar este motivo, pois o mesmo já possui atendimentos criados!' })
+                return res.status(200).json({ message: 'Não é possível alterar este motivo, pois o mesmo já possui atendimentos criados!' })
             }
 
             await MotivoAbertura.update({
@@ -57,7 +57,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).json({ response: 'Motivo alterado!' })
+            return res.status(200).json({ message: 'Motivo alterado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
