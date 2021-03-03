@@ -5,7 +5,7 @@ module.exports = {
         try {
             const { descricao } = req.body
 
-            if (!descricao) return res.status(400).json({ response: 'Dados incompletos!' })
+            if (!descricao) return res.status(200).json({ message: 'Dados incompletos!' })
 
             const industry = await Ramo.findOne({
                 where: {
@@ -13,11 +13,11 @@ module.exports = {
                 }
             })
 
-            if(industry) return res.status(400).json({ response: 'Ramo de atividade já cadastrado!' })
+            if(industry) return res.status(200).json({ message: 'Ramo de atividade já cadastrado!' })
 
             await Ramo.create({ descricao })
 
-            return res.status(200).json({ response: 'Ramo de Atividade Cadastrado!' })
+            return res.status(200).json({ message: 'Ramo de Atividade Cadastrado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -31,7 +31,7 @@ module.exports = {
                 }
             })
 
-            if (industries.length <= 0) res.status(404).json({ response: 'Nenhum Ramo de Atividade Cadastrado!' })
+            if (industries.length <= 0) res.status(404).json({ message: 'Nenhum Ramo de Atividade Cadastrado!' })
 
             return res.status(200).json(industries)
         } catch (error) {
@@ -44,11 +44,17 @@ module.exports = {
             const { id } = req.params
             const { descricao } = req.body
 
-            if(!descricao) return res.status(400).json({ response: 'Informe o novo valor!' })
+            if(!descricao) return res.status(200).json({ message: 'Informe o novo valor!' })
 
-            const industrie = await Ramo.findOne({ where: { descricao } })
+            const industrie = await Ramo.findOne({
+                where: {
+                    descricao
+                }
+            })
 
-            if (industrie) return res.status(400).json({ response: 'Descrição já utilizada!' })
+            if (industrie) {
+                return res.status(200).json({ message: 'Essa descrição está em uso, ou é a igual a anterior!' })
+            }
 
             await Ramo.update({
                 descricao
@@ -58,7 +64,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).json({ response: 'Ramo alterado com sucesso!' })
+            return res.status(200).json({ message: 'Ramo alterado com sucesso!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -74,10 +80,12 @@ module.exports = {
                 }
             })
 
-            if (!industrie) return res.status(404).send({ error: 'Ramo não encontado!' })
+            if (!industrie) return res.status(200).json({ message: 'Ramo não encontado!' })
 
             if (industrie.clientes.length >= 1) {
-                return res.status(404).send({ error: 'Este ramo não pode ser deletado, pois possui clientes associados a ele!' })
+                return res.status(200).json({
+                    message: 'Esse ramo não pode ser deletado, pois possui clientes associados a ele! Remova-os e tente novamente.'
+                })
             }
 
             await Ramo.destroy({
@@ -86,7 +94,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).json({ response: 'Ramo deletado!' })
+            return res.status(200).json({ message: 'Ramo deletado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
