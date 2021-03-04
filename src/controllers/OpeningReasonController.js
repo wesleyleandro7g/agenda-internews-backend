@@ -49,6 +49,16 @@ module.exports = {
                 return res.status(200).json({ message: 'Não é possível alterar este motivo, pois o mesmo já possui atendimentos criados!' })
             }
 
+            const reasonExist = await MotivoAbertura.findOne({
+                where: {
+                    descricao
+                }
+            })
+
+            if (reasonExist) {
+                return res.status(200).json({ message: 'Descrição em uso ou igual a anterior!' })
+            }
+
             await MotivoAbertura.update({
                 descricao
             }, {

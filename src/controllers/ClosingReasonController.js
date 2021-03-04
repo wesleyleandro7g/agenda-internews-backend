@@ -15,9 +15,9 @@ module.exports = {
                 }
             })
 
-            if(!created) return res.status(400).json({ response: `Motivo de fechamento '${reason.descricao}' já cadastrado!` })
+            if(!created) return res.status(200).json({ message: `Motivo de fechamento '${reason.descricao}' já cadastrado!` })
 
-            return res.status(200).json({ response: 'Motivo cadastrado!' })
+            return res.status(200).json({ message: 'Motivo cadastrado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -45,7 +45,17 @@ module.exports = {
             })
 
             if (closing.atendimentos.length >= 1) {
-                return res.status(400).json({ response: 'Não é possível deletar este motivo, pois o mesmo já possui atendimentos criados!' })
+                return res.status(200).json({ message: 'Não é possível alterar este motivo, pois o mesmo já possui atendimentos criados!' })
+            }
+
+            const reasonExist = await MotivoFechamento.findOne({
+                where: {
+                    descricao
+                }
+            })
+
+            if (reasonExist) {
+                return res.status(200).json({ message: 'Descrição em uso ou igual a anterior!' })
             }
 
             await MotivoFechamento.update({
@@ -56,7 +66,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).json({ response: 'Motivo alterado!' })
+            return res.status(200).json({ message: 'Motivo alterado!' })
         } catch (error) {
             return res.status(500).json({ error: error })
         }
