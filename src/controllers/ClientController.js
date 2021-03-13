@@ -27,9 +27,9 @@ module.exports = {
                 }
             })
 
-            if(client) return res.status(400).send('Cliente já cadastrado!')
+            if(client) return res.status(200).json({ message: 'Cliente já cadastrado!' })
 
-            const newClient = await Cliente.create({
+            await Cliente.create({
                 razao_social,
                 cnpj,
                 endereco,
@@ -46,7 +46,7 @@ module.exports = {
                 id_suporte
              })
 
-            return res.status(200).json(newClient)
+            return res.status(200).json({ message: 'Cliente cadastrado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }

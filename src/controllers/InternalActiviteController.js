@@ -5,7 +5,7 @@ module.exports = {
         try {
             const { descricao } = req.body
 
-            if(!descricao) return res.status(400).json({ response: 'Informe a descrição!' })
+            if(!descricao) return res.status(200).json({ message: 'Informe a descrição!' })
 
             const [ activity, created ] = await AtividadeInterna.findOrCreate({
                 where: {
@@ -16,9 +16,9 @@ module.exports = {
                 }
             })
 
-            if(!created) return res.status(400).json({ response: `A atividade '${activity.descricao}' já está cadastrada!` })
+            if(!created) return res.status(200).json({ message: `A atividade '${activity.descricao}' já está cadastrada!` })
 
-            return res.status(200).json({ response: 'Atividade cadastrada!' })
+            return res.status(200).json({ message: 'Atividade cadastrada!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
