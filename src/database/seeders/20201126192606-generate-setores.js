@@ -6,22 +6,22 @@ module.exports = {
       "setores",
       [
         {
-          nome: "ADMINISTRATIVO",
+          descricao: "ADMINISTRATIVO",
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
-          nome: "ONLINE",
+          descricao: "ONLINE",
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
-          nome: "INTERNO",
+          descricao: "INTERNO",
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
-          nome: "EXTERNO",
+          descricao: "EXTERNO",
           created_at: new Date(),
           updated_at: new Date(),
         },

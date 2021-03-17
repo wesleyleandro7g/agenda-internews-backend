@@ -4,7 +4,7 @@ class Suporte extends Model {
   static init(sequelize) {
     super.init(
       {
-        nome: DataTypes.STRING,
+        descricao: DataTypes.STRING,
         id_usuario: DataTypes.INTEGER,
       },
       {

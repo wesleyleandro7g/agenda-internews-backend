@@ -4,28 +4,28 @@ const Usuario = require('../models/Usuario')
 module.exports = {
     async createNewUser(req, res){
         try {
-            const { nome, id_setor, contato, senha } = req.body
+            const { descricao, id_setor, contato, senha } = req.body
 
-            if (!nome || !id_setor || !senha) return res.status(400).json({ response: 'Dados incompletos!' })
+            if (!descricao || !id_setor || !senha) return res.status(200).json({ message: 'Dados incompletos!' })
 
             const newPassword = await bcrypt.hash(senha, 10);
 
             const user = await Usuario.findOne({
                 where: {
-                    nome
+                    descricao
                 }
             })
 
-            if(user) return res.status(400).json({ response: 'Já existe um usuário com esse nome!' })
+            if(user) return res.status(200).json({ message: 'Já existe um usuário com esse nome!' })
 
             await Usuario.create({
-                nome,
+                descricao,
                 id_setor,
                 contato,
                 senha: newPassword
             })
 
-            return res.status(200).json({ response: 'Usuário cadastro!' })
+            return res.status(200).json({ message: 'Usuário cadastro!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }

@@ -9,7 +9,7 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      nome: {
+      descricao: {
         type: Sequelize.STRING,
         allowNull: false,
       },
