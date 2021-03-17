@@ -17,7 +17,7 @@ module.exports = {
                 }
             })
 
-            if(!created) return res.status(200).json({ message: `O nome '${support.nome}' já está em uso!` })
+            if(!created) return res.status(200).json({ message: `O nome '${support.descricao}' já está em uso!` })
 
             return res.status(200).json({ message: 'Suporte cadastrado!' })
         } catch (error) {
