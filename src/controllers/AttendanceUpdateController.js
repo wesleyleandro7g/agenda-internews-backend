@@ -36,7 +36,7 @@ module.exports = {
                 id_setor
             })
 
-            return res.status(200).json({ mensage: 'Atendimento aberto! '})
+            return res.status(200).json({ message: 'Atendimento aberto! '})
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -54,7 +54,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).json({ mensage: 'Atendimento iniciado!' })
+            return res.status(200).json({ message: 'Atendimento iniciado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -73,7 +73,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).json({ mensage: 'Atendimento repassado!' })
+            return res.status(200).json({ message: 'Atendimento repassado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -101,7 +101,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).json({ mensage: 'Atendimento finalizado!' })
+            return res.status(200).json({ message: 'Atendimento finalizado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }

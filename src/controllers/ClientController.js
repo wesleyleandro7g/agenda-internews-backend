@@ -101,7 +101,7 @@ module.exports = {
                 }
             })
 
-            return res.status(200).json({ clients, count})
+            return res.status(200).json({ clients, count })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -133,9 +133,9 @@ module.exports = {
                 }
             })
 
-            if(!client) return res.status(404).send('Cliente não encontrado!')
+            if(!client) return res.status(200).json({ message: 'Cliente não encontrado!' })
 
-            const updatedClient = await Cliente.update({
+            await Cliente.update({
                 razao_social,
                 cnpj,
                 endereco,
@@ -157,7 +157,7 @@ module.exports = {
                  }
              })
 
-            return res.status(200).json(updatedClient)
+            return res.status(200).json({ message: 'Cliente alterado!' })
         } catch (error) {
             console.log(error)
             return res.status(500).json({ error: error });
