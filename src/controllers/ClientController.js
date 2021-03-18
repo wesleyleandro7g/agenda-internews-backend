@@ -19,7 +19,8 @@ module.exports = {
 				id_cidade,
 				id_modulo,
 				id_suporte,
-				versao_internews
+				versao_internews,
+				vencimento_mensalidade
 			} = req.body
 			
 			const client = await Cliente.findOne({
@@ -45,7 +46,8 @@ module.exports = {
 				id_cidade,
 				id_modulo,
 				id_suporte,
-				versao_internews
+				versao_internews,
+				vencimento_mensalidade
 			})
 			
 			return res.status(200).json({ message: 'Cliente cadastrado!' })
@@ -124,7 +126,8 @@ module.exports = {
 				id_cidade,
 				id_modulo,
 				id_suporte,
-				versao_internews
+				versao_internews,
+				vencimento_mensalidade
 			} = req.body
 			
 			const client = await Cliente.findOne({
@@ -150,7 +153,8 @@ module.exports = {
 				id_cidade,
 				id_modulo,
 				id_suporte,
-				versao_internews
+				versao_internews,
+				vencimento_mensalidade
 			}, {
 				where: {
 					cnpj

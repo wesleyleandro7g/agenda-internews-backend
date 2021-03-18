@@ -41,6 +41,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      vencimento_mensalidade: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
       mensalidade: {
         type: Sequelize.STRING,
         allowNull: true,
