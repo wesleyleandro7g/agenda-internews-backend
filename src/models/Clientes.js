@@ -18,6 +18,7 @@ class Clientes extends Model {
         id_cidade: DataTypes.INTEGER,
         id_modulo: DataTypes.INTEGER,
         id_suporte: DataTypes.INTEGER,
+        versao_internews: DataTypes.STRING
       },
       {
         sequelize,
