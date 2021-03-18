@@ -6,15 +6,16 @@ const JWT = require("../config/JWT");
 
 module.exports = {
   async userAuthenticate(req, res) {
+    console.log(req.body)
     try {
-      const { nome, senha } = req.body;
+      const { descricao, senha } = req.body;
 
-      if (!nome || !senha)
+      if (!descricao || !senha)
         return res.status(400).send({ error: "Dados incompletos" });
 
       const user = await User.findOne({
         where: {
-          nome
+          descricao
         }, include: [
           {
             association: 'setor'
@@ -27,24 +28,25 @@ module.exports = {
       if (!user)
         return res.status(404).send({ error: "Usuário não encontrado" });
 
+      console.log(user)
+
       const pass = await bcrypt.compare(senha, user.dataValues.senha);
 
       if (!pass) return res.status(401).send({ error: "Senha invalida" });
 
       const payload = {
         userID: user.dataValues.id,
-        userName: user.dataValues.nome,
+        userName: user.dataValues.descricao,
         sectorID: user.dataValues.setor.id,
-        sectorName: user.dataValues.setor.nome,
+        sectorName: user.dataValues.setor.descricao,
         supportID: user.dataValues.suporte ? user.dataValues.suporte.id : null,
-        supportName: user.dataValues.suporte ? user.dataValues.suporte.nome : null
+        supportName: user.dataValues.suporte ? user.dataValues.suporte.descricao : null
       };
 
       const newToken = await JWT.generate(payload, process.env.AUTH_USER || '0a3ccfe0f3385d22f6ca450f00a4d97e', 8400);
 
       return res.status(200).json({ token: newToken, payload: payload });
     } catch (error) {
-      console.log(error)
       return res.status(500).json({ error: error });
     }
   },

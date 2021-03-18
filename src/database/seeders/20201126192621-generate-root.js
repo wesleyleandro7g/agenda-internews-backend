@@ -9,7 +9,7 @@ module.exports = {
       "usuarios",
       [
         {
-          nome: "suporte",
+          descricao: "suporte",
           id_setor: 1,
           contato: null,
           senha: newpassword,

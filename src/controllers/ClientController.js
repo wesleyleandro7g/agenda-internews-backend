@@ -18,7 +18,8 @@ module.exports = {
                 id_atividade_interna,
                 id_cidade,
                 id_modulo,
-                id_suporte
+                id_suporte,
+                versao_internews
             } = req.body
 
             const client = await Cliente.findOne({
@@ -27,9 +28,9 @@ module.exports = {
                 }
             })
 
-            if(client) return res.status(400).send('Cliente já cadastrado!')
+            if(client) return res.status(200).json({ message: 'Cliente já cadastrado!' })
 
-            const newClient = await Cliente.create({
+            await Cliente.create({
                 razao_social,
                 cnpj,
                 endereco,
@@ -43,10 +44,11 @@ module.exports = {
                 id_atividade_interna,
                 id_cidade,
                 id_modulo,
-                id_suporte
+                id_suporte,
+                versao_internews
              })
 
-            return res.status(200).json(newClient)
+            return res.status(200).json({ message: 'Cliente cadastrado!' })
         } catch (error) {
             return res.status(500).json({ error: error });
         }
@@ -121,7 +123,8 @@ module.exports = {
                 id_atividade_interna,
                 id_cidade,
                 id_modulo,
-                id_suporte
+                id_suporte,
+                versao_internews
             } = req.body
 
             const client = await Cliente.findOne({
@@ -146,7 +149,8 @@ module.exports = {
                 id_atividade_interna,
                 id_cidade,
                 id_modulo,
-                id_suporte
+                id_suporte,
+                versao_internews
              }, {
                  where: {
                     cnpj

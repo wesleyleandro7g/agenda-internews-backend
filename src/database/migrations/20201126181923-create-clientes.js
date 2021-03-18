@@ -45,6 +45,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      versao_internews: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       id_atividade: {
         type: Sequelize.INTEGER,
         references: { model: 'ramo_atividade', key: 'id' },
