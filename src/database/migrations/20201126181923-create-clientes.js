@@ -47,7 +47,7 @@ module.exports = {
       },
       versao_internews: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       id_atividade: {
         type: Sequelize.INTEGER,

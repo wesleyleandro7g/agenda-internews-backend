@@ -33,6 +33,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      versao_internews: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       id_cliente: {
         type: Sequelize.INTEGER,
         references: { model: 'clientes', key: 'id' },

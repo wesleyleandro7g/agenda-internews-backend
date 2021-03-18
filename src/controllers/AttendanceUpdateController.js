@@ -81,7 +81,7 @@ module.exports = {
 
     async closeAttendence(req, res){
         try {
-            const { id_atendimento, fech_motivos, id_suporte } = req.body
+            const { id_atendimento, fech_motivos, id_suporte, versao_internews } = req.body
 
             fech_motivos.forEach(item => {
                 MotivoFechAtend.create({
@@ -93,7 +93,8 @@ module.exports = {
 
             await Atendimentos.update({
                 id_suporte,
-                id_status: 4
+                id_status: 4,
+                versao_internews
             }, {
                 where: {
                     id: id_atendimento
@@ -102,7 +103,6 @@ module.exports = {
 
             return res.status(200).json({ mensage: 'Atendimento finalizado!' })
         } catch (error) {
-            console.log(error)
             return res.status(500).json({ error: error });
         }
     }

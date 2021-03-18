@@ -17,7 +17,8 @@ module.exports = {
                     id_status: [1, 2, 3]
                 },
                 order: [
-                    ['id', 'DESC']
+                    ['id', 'DESC'],
+                    ['id_status', 'DESC']
                 ]
             })
 
