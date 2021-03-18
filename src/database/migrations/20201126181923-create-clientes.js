@@ -9,13 +9,17 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      razao_social: {
+      nome: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       cnpj: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
+      },
+      cpf: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       endereco: {
         type: Sequelize.STRING,

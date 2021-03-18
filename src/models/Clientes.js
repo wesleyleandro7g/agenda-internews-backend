@@ -4,8 +4,9 @@ class Clientes extends Model {
   static init(sequelize) {
     super.init(
       {
-        razao_social: DataTypes.STRING,
+        nome: DataTypes.STRING,
         cnpj: DataTypes.STRING,
+        cpf: DataTypes.STRING,
         endereco: DataTypes.STRING,
         quantidade_acessos: DataTypes.INTEGER,
         quantidade_empresas: DataTypes.INTEGER,

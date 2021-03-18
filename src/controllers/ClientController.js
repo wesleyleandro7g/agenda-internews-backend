@@ -5,8 +5,9 @@ module.exports = {
 	async createNewClient(req, res){
 		try {
 			const {
-				razao_social,
+				nome,
 				cnpj,
+				cpf,
 				endereco,
 				quantidade_acessos,
 				quantidade_empresas,
@@ -32,8 +33,9 @@ module.exports = {
 			if(client) return res.status(200).json({ message: 'Cliente já cadastrado!' })
 			
 			await Cliente.create({
-				razao_social,
+				nome,
 				cnpj,
+				cpf,
 				endereco,
 				quantidade_acessos,
 				quantidade_empresas,
@@ -67,7 +69,7 @@ module.exports = {
 					{ association: 'ferramentas' }
 				],
 				order: [
-					['razao_social', 'ASC']
+					['nome', 'ASC']
 				]
 			})
 			
@@ -112,8 +114,9 @@ module.exports = {
 	async updateClient(req, res){
 		try {
 			const {
-				razao_social,
+				nome,
 				cnpj,
+				cpf,
 				endereco,
 				quantidade_acessos,
 				quantidade_empresas,
@@ -139,8 +142,9 @@ module.exports = {
 			if(!client) return res.status(200).json({ message: 'Cliente não encontrado!' })
 			
 			await Cliente.update({
-				razao_social,
+				nome,
 				cnpj,
+				cpf,
 				endereco,
 				quantidade_acessos,
 				quantidade_empresas,
