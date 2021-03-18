@@ -17,7 +17,9 @@ class Atendimentos extends Model {
         id_fechamento: DataTypes.INTEGER,
         id_suporte: DataTypes.INTEGER,
         id_setor: DataTypes.INTEGER,
-        versao_internews: DataTypes.STRING
+        versao_internews: DataTypes.STRING,
+        nome_atendente: DataTypes.STRING,
+        descricao_atendimento: DataTypes.STRING
       },
       {
         sequelize,

@@ -37,6 +37,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      descricao_atendimento: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      nome_atendente: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       id_cliente: {
         type: Sequelize.INTEGER,
         references: { model: 'clientes', key: 'id' },
