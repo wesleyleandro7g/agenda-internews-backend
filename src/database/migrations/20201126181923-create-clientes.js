@@ -19,31 +19,31 @@ module.exports = {
       },
       endereco: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       quantidade_acessos: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       quantidade_empresas: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       quantidade_bancos: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       identificador_servidor: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       identificador_internews: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       mensalidade: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       versao_internews: {
         type: Sequelize.STRING,

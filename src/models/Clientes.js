@@ -12,7 +12,7 @@ class Clientes extends Model {
         quantidade_bancos: DataTypes.INTEGER,
         identificador_servidor: DataTypes.STRING,
         identificador_internews: DataTypes.STRING,
-        mensalidade: DataTypes.INTEGER,
+        mensalidade: DataTypes.STRING,
         id_atividade: DataTypes.INTEGER,
         id_atividade_interna: DataTypes.INTEGER,
         id_cidade: DataTypes.INTEGER,
