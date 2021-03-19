@@ -1,9 +1,10 @@
 "use strict";
 const bcrypt = require("bcryptjs");
+require("dotenv").config();
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const newpassword = await bcrypt.hash("suphexa", 10);
+    const newpassword = await bcrypt.hash(process.env.SUPPORT_PASSWORD || 'suphexa', 10);
 
     await queryInterface.bulkInsert(
       "usuarios",
