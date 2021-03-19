@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      razao_social: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       cnpj: {
         type: Sequelize.STRING,
         allowNull: true,
@@ -22,6 +26,18 @@ module.exports = {
         allowNull: true,
       },
       endereco: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      responsavel: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      contato: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      email: {
         type: Sequelize.STRING,
         allowNull: true,
       },
@@ -45,11 +61,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      vencimento_mensalidade: {
-        type: Sequelize.DATE,
+      mensalidade: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
-      mensalidade: {
+      vencimento_mensalidade: {
         type: Sequelize.STRING,
         allowNull: true,
       },

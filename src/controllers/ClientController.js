@@ -6,9 +6,13 @@ module.exports = {
 		try {
 			const {
 				nome,
+				razao_social,
 				cnpj,
 				cpf,
 				endereco,
+				responsavel,
+				contato,
+				email,
 				quantidade_acessos,
 				quantidade_empresas,
 				quantidade_bancos,
@@ -34,9 +38,13 @@ module.exports = {
 			
 			await Cliente.create({
 				nome,
+				razao_social,
 				cnpj,
 				cpf,
 				endereco,
+				responsavel,
+				contato,
+				email,
 				quantidade_acessos,
 				quantidade_empresas,
 				quantidade_bancos,
@@ -115,9 +123,13 @@ module.exports = {
 		try {
 			const {
 				nome,
+				razao_social,
 				cnpj,
 				cpf,
 				endereco,
+				responsavel,
+				contato,
+				email,
 				quantidade_acessos,
 				quantidade_empresas,
 				quantidade_bancos,
@@ -143,9 +155,13 @@ module.exports = {
 			
 			await Cliente.update({
 				nome,
+				razao_social,
 				cnpj,
 				cpf,
 				endereco,
+				responsavel,
+				contato,
+				email,
 				quantidade_acessos,
 				quantidade_empresas,
 				quantidade_bancos,
@@ -167,7 +183,6 @@ module.exports = {
 			
 			return res.status(200).json({ message: 'Cliente alterado!' })
 		} catch (error) {
-			console.log(error)
 			return res.status(500).json({ error: error });
 		}
 	},

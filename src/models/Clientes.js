@@ -5,22 +5,26 @@ class Clientes extends Model {
     super.init(
       {
         nome: DataTypes.STRING,
+        razao_social: DataTypes.STRING,
         cnpj: DataTypes.STRING,
         cpf: DataTypes.STRING,
         endereco: DataTypes.STRING,
+        responsavel: DataTypes.STRING,
+        contato: DataTypes.STRING,
+        email: DataTypes.STRING,
         quantidade_acessos: DataTypes.INTEGER,
         quantidade_empresas: DataTypes.INTEGER,
         quantidade_bancos: DataTypes.INTEGER,
         identificador_servidor: DataTypes.STRING,
         identificador_internews: DataTypes.STRING,
         mensalidade: DataTypes.STRING,
+        vencimento_mensalidade: DataTypes.STRING,
+        versao_internews: DataTypes.STRING,
         id_atividade: DataTypes.INTEGER,
         id_atividade_interna: DataTypes.INTEGER,
         id_cidade: DataTypes.INTEGER,
         id_modulo: DataTypes.INTEGER,
-        id_suporte: DataTypes.INTEGER,
-        versao_internews: DataTypes.STRING,
-        vencimento_mensalidade: DataTypes.STRING
+        id_suporte: DataTypes.INTEGER       
       },
       {
         sequelize,
