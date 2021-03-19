@@ -11,7 +11,7 @@ module.exports = {
       },
       nome_solicitante: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       contato_solicitante: {
         type: Sequelize.STRING,
