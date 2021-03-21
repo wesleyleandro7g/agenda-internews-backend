@@ -1,5 +1,6 @@
 const Cliente = require('../models/Clientes')
 const Suporte = require('../models/Suporte')
+const AInterna = require('../models/AtividadeInterna')
 
 module.exports = {
 	async createNewClient(req, res){
@@ -152,6 +153,10 @@ module.exports = {
 			})
 			
 			if(!client) return res.status(200).json({ message: 'Cliente não encontrado!' })
+
+			const activities = await AInterna.findByPk(id_atividade_interna)
+
+			console.log({ Atividade: activities })
 			
 			await Cliente.update({
 				nome,
@@ -183,7 +188,8 @@ module.exports = {
 			
 			return res.status(200).json({ message: 'Cliente alterado!' })
 		} catch (error) {
-			return res.status(500).json({ error: error });
+			console.log(error)
+			return res.status(500).json({ error: error })
 		}
 	},
 }

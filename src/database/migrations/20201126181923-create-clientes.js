@@ -93,7 +93,7 @@ module.exports = {
       },
       id_atividade_interna: {
         type: Sequelize.INTEGER,
-        references: { model: 'modulos', key: 'id' },
+        references: { model: 'atividade_interna', key: 'id' },
         onUpdate: 'RESTRICT',
         onDelete: 'RESTRICT'
       },
