@@ -3,13 +3,14 @@ const AtividadeInterna = require('../models/AtividadeInterna')
 module.exports = {
 	async createNewActivity(req, res){
 		try {
-			const { descricao } = req.body
+			const { descricao, desconsiderar_relatorio } = req.body
 			
 			if(!descricao) return res.status(200).json({ message: 'Informe a descrição!' })
 			
 			const [ activity, created ] = await AtividadeInterna.findOrCreate({
 				where: {
-					descricao
+					descricao,
+					desconsiderar_relatorio
 				},
 				defaults: {
 					descricao

@@ -5,6 +5,7 @@ class AtividadeInterna extends Model {
     super.init(
       {
         descricao: DataTypes.STRING,
+        desconsiderar_relatorio: DataTypes.BOOLEAN
       },
       {
         sequelize,
