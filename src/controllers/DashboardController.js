@@ -1,5 +1,4 @@
 const Atendimentos = require('../models/Atendimentos')
-const Suporte = require('../models/Suporte')
 const Clientes = require('../models/Clientes')
 const Cidades = require('../models/Cidade')
 const AtividadeInterna = require('../models/AtividadeInterna')
@@ -184,11 +183,24 @@ module.exports = {
 	async attendencesForMonth(req, res){
 		try {
 			const { id_suporte } = req.params
+
+			const internalActivitiesValid = await AtividadeInterna.findAll({
+				attributes: ['id'],
+				where: {
+					desconsiderar_relatorio: false
+				}
+			})
+
+			const validActivitiesID = []
+			internalActivitiesValid.map(item => {
+				validActivitiesID.push(item.id)
+			})
 			
 			const { count, rows: clients} = await Clientes.findAndCountAll({
 				attributes: [ 'id' ],
 				where: {
-					id_suporte
+					id_suporte,
+					id_atividade_interna: [...validActivitiesID]
 				}
 			})
 			

@@ -1,6 +1,6 @@
 const Atendimentos = require('../models/Atendimentos')
-const Suporte = require('../models/Suporte')
 const Clientes = require('../models/Clientes')
+const Cidades = require('../models/Cidade')
 const AtividadeInterna = require('../models/AtividadeInterna')
 const RamoAtivitade = require('../models/RamoAtividade')
 const MotivoFechamento = require('../models/MotivoFechamento')
@@ -73,6 +73,41 @@ module.exports = {
 			return res.status(500).json({ error: error });
 		}
 	},
+
+		async clientsForCities(req, res){
+		try {
+			const cities = await Cidades.findAll({
+				include: {
+					association: 'clientes',
+					attributes: ['id']
+				}
+			})
+			
+			const clients = await Clientes.findAll({
+				attributes: ['id_cidade']
+			})
+			
+			const Value = []            
+			const Description = []
+			const Data = []
+			
+			cities.map((item, index) => {
+				Value.push(clients.filter(client => client.id_cidade === item.id)),
+				Description.push(cities[index].descricao)
+			})
+			
+			cities.map((cidade, index) => {
+				Data.push({
+					nome: Description[index],
+					quantidade: Value[index].length
+				})
+			})
+			
+			return res.status(200).json({ Data })
+		} catch (error) {
+			return res.status(500).json({ error: error });
+		}
+	},
 	
 	async attendencesForType(req, res){
 		try {
@@ -82,8 +117,6 @@ module.exports = {
 					id_status: 4
 				}
 			})
-			
-			console.log(attendences[0].id)
 			
 			const fechamentos = await MotivoFechAtend.findAll({
 				where: {
@@ -118,8 +151,23 @@ module.exports = {
 	
 	async attendencesForMonth(req, res){
 		try {
+			const internalActivitiesValid = await AtividadeInterna.findAll({
+				attributes: ['id'],
+				where: {
+					desconsiderar_relatorio: false
+				}
+			})
+
+			const validActivitiesID = []
+			internalActivitiesValid.map(item => {
+				validActivitiesID.push(item.id)
+			})
+
 			const { count, rows: clients} = await Clientes.findAndCountAll({
-				attributes: [ 'id' ]
+				attributes: [ 'id' ],
+				where: {
+					id_atividade_interna: [...validActivitiesID]
+				}
 			})
 			
 			const date = new Date()
