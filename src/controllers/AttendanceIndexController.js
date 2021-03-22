@@ -85,7 +85,6 @@ module.exports = {
 			
 			return res.status(200).json({ attendences, count })
 		} catch (error) {
-			console.log(error)
 			return res.status(500).json({ error: error });
 		}
 	},
@@ -152,7 +151,6 @@ module.exports = {
 			
 			return res.status(200).json({ attendences, count })
 		} catch (error) {
-			console.log(error)
 			return res.status(500).json({ error: error });
 		}
 	},
