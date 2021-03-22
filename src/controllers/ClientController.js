@@ -75,7 +75,8 @@ module.exports = {
 					{ association: 'atividade' },
 					{ association: 'modulo' },
 					{ association: 'suporte' },
-					{ association: 'ferramentas' }
+					{ association: 'ferramentas' },
+					{ association: 'atividade_interna' }
 				],
 				order: [
 					['nome', 'ASC']
