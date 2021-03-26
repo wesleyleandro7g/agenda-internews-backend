@@ -129,7 +129,21 @@ module.exports = {
 						[Op.gte]: initial_date ? initial_date : firstDay,
 						[Op.lte]: finish_date ? finish_date : lastDay
 					}
-				}
+				},
+				include: [
+					{
+						association: 'abertura',
+						attributes: ['descricao']
+					},
+					{
+						association: 'suporte',
+						attributes: ['descricao']
+					},
+					{
+						association: 'fechamento',
+						attributes: ['id', 'descricao']
+					}
+				]
 			})
 			
 			const TotalAttendences = []
